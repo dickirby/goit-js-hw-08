@@ -7,20 +7,13 @@ const items = {
 };
 const dataForm = {};
 items.form.addEventListener('submit', onFormSubmit);
-items.textarea.addEventListener('input', throttle(onTextAreaInput, 500));
-items.input.addEventListener('input', throttle(onInput, 500));
+items.form.addEventListener('input', throttle(onTextAreaInput, 500));
 
 onReload();
 
 function onTextAreaInput(evt) {
-  const message = evt.currentTarget.value;
-  dataForm.message = message;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(dataForm));
-}
-
-function onInput(evt) {
-  const email = evt.currentTarget.value;
-  dataForm.email = email;
+  const message = evt.target;
+  dataForm[message.name] = message.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(dataForm));
 }
 
