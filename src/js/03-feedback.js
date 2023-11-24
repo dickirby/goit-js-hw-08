@@ -7,11 +7,11 @@ const items = {
 };
 const dataForm = {};
 items.form.addEventListener('submit', onFormSubmit);
-items.form.addEventListener('input', throttle(onTextAreaInput, 500));
+items.form.addEventListener('input', throttle(onInput, 500));
 
 onReload();
 
-function onTextAreaInput(evt) {
+function onInput(evt) {
   const message = evt.target;
   dataForm[message.name] = message.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(dataForm));
